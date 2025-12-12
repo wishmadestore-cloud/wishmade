@@ -1,0 +1,108 @@
+[
+    {
+        "id": 1,
+        "name": "Classic Cotton T-Shirt",
+        "price": 500,
+        "category": "Men",
+        "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+        "description": "Premium comfortable cotton T-shirt, perfect for casual wear.",
+        "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Slim Fit Denim Jeans",
+        "price": 1200,
+        "category": "Men",
+        "image": "https://images.unsplash.com/photo-1542272454315-4c01d7abdf4a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+        "description": "Classic blue denim jeans with a modern fit and durable stitching.",
+        "sizes": [
+            "30",
+            "32",
+            "34",
+            "36"
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Winter Parka Jacket",
+        "price": 2500,
+        "category": "Women",
+        "image": "https://images.unsplash.com/photo-1551028919-ac767f10c2a3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+        "description": "Stylish and warm jacket optimized for chilly days.",
+        "sizes": [
+            "XS",
+            "S",
+            "M",
+            "L"
+        ]
+    },
+    {
+        "id": 4,
+        "name": "Elegant Evening Dress",
+        "price": 1800,
+        "category": "Women",
+        "image": "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+        "description": "Elegant dress suitable for parties, weddings, and formal events.",
+        "sizes": [
+            "S",
+            "M",
+            "L"
+        ]
+    },
+    {
+        "id": 5,
+        "name": "Knitted Wool Sweater",
+        "price": 1500,
+        "category": "Men",
+        "image": "https://images.unsplash.com/photo-1616688329665-aad834d8d1e2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+        "description": "Cozy sweater for winter with soft material and ribbed cuffs.",
+        "sizes": [
+            "M",
+            "L",
+            "XL"
+        ]
+    },
+    {
+        "id": 6,
+        "name": "Floral Midi Skirt",
+        "price": 900,
+        "category": "Women",
+        "image": "https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+        "description": "Chic skirt that pairs well with any top, featuring a floral pattern.",
+        "sizes": [
+            "S",
+            "M",
+            "L"
+        ]
+    },
+    {
+        "id": 7,
+        "name": "Leather Chelsea Boots",
+        "price": 3200,
+        "category": "Men",
+        "image": "https://images.unsplash.com/photo-1638247025967-b4e38f787b76?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+        "description": "Genuine leather boots that add a touch of class to any outfit.",
+        "sizes": [
+            "8",
+            "9",
+            "10",
+            "11"
+        ]
+    },
+    {
+        "id": 8,
+        "name": "Silk Scarf",
+        "price": 450,
+        "category": "Women",
+        "image": "https://images.unsplash.com/photo-1584030373081-f37b7bb4fa8e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+        "description": "Luxurious silk scarf with a vibrant print.",
+        "sizes": [
+            "One Size"
+        ]
+    }
+]
