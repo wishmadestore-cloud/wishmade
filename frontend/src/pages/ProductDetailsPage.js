@@ -17,8 +17,7 @@ const ProductDetailsPage = ({ addToCart }) => {
                 setProduct(data);
                 // Default to first size if available
                 if (data.sizes && data.sizes.length > 0) {
-                    // setSelectedSize(data.sizes[0]); 
-                    // Let's force user to pick one
+                    setSelectedSize(data.sizes[0]);
                 }
             } catch (err) {
                 setError('Failed to load product details');
@@ -42,7 +41,7 @@ const ProductDetailsPage = ({ addToCart }) => {
         };
 
         addToCart(productToAdd);
-        navigate('/checkout'); // Or stay on page, but user flow suggests immediate action
+        navigate('/cart');
     };
 
     if (loading) return <div className="container" style={{ padding: '50px' }}>Loading...</div>;

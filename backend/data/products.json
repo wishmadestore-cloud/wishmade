@@ -3,6 +3,8 @@
         "id": 1,
         "name": "Classic Cotton T-Shirt",
         "price": 500,
+        "gender": "Men",
+        "subCategory": "Top",
         "category": "Men",
         "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
         "description": "Premium comfortable cotton T-shirt, perfect for casual wear.",
@@ -17,6 +19,8 @@
         "id": 2,
         "name": "Slim Fit Denim Jeans",
         "price": 1200,
+        "gender": "Men",
+        "subCategory": "Bottom",
         "category": "Men",
         "image": "https://images.unsplash.com/photo-1542272454315-4c01d7abdf4a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
         "description": "Classic blue denim jeans with a modern fit and durable stitching.",
@@ -31,6 +35,8 @@
         "id": 3,
         "name": "Winter Parka Jacket",
         "price": 2500,
+        "gender": "Women",
+        "subCategory": "Outerwear",
         "category": "Women",
         "image": "https://images.unsplash.com/photo-1551028919-ac767f10c2a3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
         "description": "Stylish and warm jacket optimized for chilly days.",
@@ -45,6 +51,8 @@
         "id": 4,
         "name": "Elegant Evening Dress",
         "price": 1800,
+        "gender": "Women",
+        "subCategory": "Dress",
         "category": "Women",
         "image": "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
         "description": "Elegant dress suitable for parties, weddings, and formal events.",
@@ -58,6 +66,8 @@
         "id": 5,
         "name": "Knitted Wool Sweater",
         "price": 1500,
+        "gender": "Men",
+        "subCategory": "Top",
         "category": "Men",
         "image": "https://images.unsplash.com/photo-1616688329665-aad834d8d1e2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
         "description": "Cozy sweater for winter with soft material and ribbed cuffs.",
@@ -71,6 +81,8 @@
         "id": 6,
         "name": "Floral Midi Skirt",
         "price": 900,
+        "gender": "Women",
+        "subCategory": "Bottom",
         "category": "Women",
         "image": "https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
         "description": "Chic skirt that pairs well with any top, featuring a floral pattern.",
@@ -84,6 +96,8 @@
         "id": 7,
         "name": "Leather Chelsea Boots",
         "price": 3200,
+        "gender": "Men",
+        "subCategory": "Footwear",
         "category": "Men",
         "image": "https://images.unsplash.com/photo-1638247025967-b4e38f787b76?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
         "description": "Genuine leather boots that add a touch of class to any outfit.",
@@ -98,11 +112,323 @@
         "id": 8,
         "name": "Silk Scarf",
         "price": 450,
+        "gender": "Women",
+        "subCategory": "Accessories",
         "category": "Women",
         "image": "https://images.unsplash.com/photo-1584030373081-f37b7bb4fa8e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
         "description": "Luxurious silk scarf with a vibrant print.",
         "sizes": [
             "One Size"
+        ]
+    },
+    {
+        "id": 9,
+        "name": "Unisex Hoodie",
+        "price": 1800,
+        "gender": "Unisex",
+        "subCategory": "Top",
+        "category": "Unisex",
+        "image": "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+        "description": "Comfy hoodie for everyone to enjoy.",
+        "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ]
+    },
+    {
+        "id": 10,
+        "name": "Running Shoes",
+        "price": 3500,
+        "gender": "Unisex",
+        "subCategory": "Footwear",
+        "category": "Unisex",
+        "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+        "description": "High-performance running shoes for your daily jog.",
+        "sizes": [
+            "7",
+            "8",
+            "9",
+            "10",
+            "11"
+        ]
+    },
+    {
+        "id": 11,
+        "name": "Classic Chinos",
+        "price": 1400,
+        "gender": "Men",
+        "subCategory": "Bottom",
+        "category": "Men",
+        "image": "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+        "description": "Versatile chinos perfect for office or casual outings.",
+        "sizes": [
+            "30",
+            "32",
+            "34",
+            "36"
+        ]
+    },
+    {
+        "id": 12,
+        "name": "Summer Floral Dress",
+        "price": 2200,
+        "gender": "Women",
+        "subCategory": "Dress",
+        "category": "Women",
+        "image": "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+        "description": "Light and breezy dress for warm summer days.",
+        "sizes": [
+            "S",
+            "M",
+            "L"
+        ]
+    },
+    {
+        "id": 13,
+        "name": "Men's Casual Linen Shirt",
+        "price": 1600,
+        "gender": "Men",
+        "subCategory": "Top",
+        "category": "Men",
+        "image": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+        "description": "Breathable linen shirt, ideal for summer afternoons.",
+        "sizes": [
+            "M",
+            "L",
+            "XL"
+        ]
+    },
+    {
+        "id": 14,
+        "name": "Women's High-Rise Skinny Jeans",
+        "price": 2100,
+        "gender": "Women",
+        "subCategory": "Bottom",
+        "category": "Women",
+        "image": "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+        "description": "Flattering high-rise skinny jeans in dark wash.",
+        "sizes": [
+            "26",
+            "28",
+            "30",
+            "32"
+        ]
+    },
+    {
+        "id": 15,
+        "name": "Unisex Canvas Backpack",
+        "price": 2800,
+        "gender": "Unisex",
+        "subCategory": "Accessories",
+        "category": "Unisex",
+        "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+        "description": "Durable canvas backpack with leather straps.",
+        "sizes": [
+            "One Size"
+        ]
+    },
+    {
+        "id": 16,
+        "name": "Men's Leather Belt",
+        "price": 950,
+        "gender": "Men",
+        "subCategory": "Accessories",
+        "category": "Men",
+        "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+        "description": "Classic brown leather belt with metal buckle.",
+        "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ]
+    },
+    {
+        "id": 17,
+        "name": "Women's Oversized Blazer",
+        "price": 3200,
+        "gender": "Women",
+        "subCategory": "Outerwear",
+        "category": "Women",
+        "image": "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+        "description": "Trendy oversized blazer for a chic office look.",
+        "sizes": [
+            "XS",
+            "S",
+            "M",
+            "L"
+        ]
+    },
+    {
+        "id": 18,
+        "name": "Men's Athletic Shorts",
+        "price": 800,
+        "gender": "Men",
+        "subCategory": "Bottom",
+        "category": "Men",
+        "image": "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+        "description": "Lightweight shorts designed for high-intensity workouts.",
+        "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ]
+    },
+    {
+        "id": 19,
+        "name": "Women's Yoga Leggings",
+        "price": 1500,
+        "gender": "Women",
+        "subCategory": "Bottom",
+        "category": "Women",
+        "image": "https://images.unsplash.com/photo-1506619216599-9d939743f39d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+        "description": "High-stretch leggings suitable for yoga and gym.",
+        "sizes": [
+            "XS",
+            "S",
+            "M",
+            "L"
+        ]
+    },
+    {
+        "id": 20,
+        "name": "Unisex Denim Jacket",
+        "price": 2700,
+        "gender": "Unisex",
+        "subCategory": "Outerwear",
+        "category": "Unisex",
+        "image": "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+        "description": "Timeless denim jacket that never goes out of style.",
+        "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ]
+    },
+    {
+        "id": 21,
+        "name": "Men's Formal Oxford Shoes",
+        "price": 4200,
+        "gender": "Men",
+        "subCategory": "Footwear",
+        "category": "Men",
+        "image": "https://images.unsplash.com/photo-1614252369475-531eba835eb1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+        "description": "Polished oxford shoes for formal occasions.",
+        "sizes": [
+            "8",
+            "9",
+            "10",
+            "11",
+            "12"
+        ]
+    },
+    {
+        "id": 22,
+        "name": "Women's Block Heel Sandals",
+        "price": 2400,
+        "gender": "Women",
+        "subCategory": "Footwear",
+        "category": "Women",
+        "image": "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+        "description": "Comfortable block heels suitable for all-day wear.",
+        "sizes": [
+            "6",
+            "7",
+            "8",
+            "9"
+        ]
+    },
+    {
+        "id": 23,
+        "name": "Unisex Beanie Hat",
+        "price": 600,
+        "gender": "Unisex",
+        "subCategory": "Accessories",
+        "category": "Unisex",
+        "image": "https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+        "description": "Warm knitted beanie for cold winter days.",
+        "sizes": [
+            "One Size"
+        ]
+    },
+    {
+        "id": 24,
+        "name": "Men's Cargo Pants",
+        "price": 1900,
+        "gender": "Men",
+        "subCategory": "Bottom",
+        "category": "Men",
+        "image": "https://images.unsplash.com/photo-1517445312582-53bd811442c7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+        "description": "Rugged cargo pants with multiple pockets for utility.",
+        "sizes": [
+            "30",
+            "32",
+            "34",
+            "36"
+        ]
+    },
+    {
+        "id": 25,
+        "name": "Women's Silk Blouse",
+        "price": 2600,
+        "gender": "Women",
+        "subCategory": "Top",
+        "category": "Women",
+        "image": "https://images.unsplash.com/photo-1564257631407-4deb1f99d992?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+        "description": "Elegant silk blouse perfect for work or evening out.",
+        "sizes": [
+            "XS",
+            "S",
+            "M",
+            "L"
+        ]
+    },
+    {
+        "id": 26,
+        "name": "Unisex Sunglasses",
+        "price": 1200,
+        "gender": "Unisex",
+        "subCategory": "Accessories",
+        "category": "Unisex",
+        "image": "https://images.unsplash.com/photo-1511499767150-a48a237f0083?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+        "description": "Retro-style sunglasses with UV protection.",
+        "sizes": [
+            "One Size"
+        ]
+    },
+    {
+        "id": 27,
+        "name": "Men's Puffer Jacket",
+        "price": 3800,
+        "gender": "Men",
+        "subCategory": "Outerwear",
+        "category": "Men",
+        "image": "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+        "description": "Insulated puffer jacket for extreme cold.",
+        "sizes": [
+            "M",
+            "L",
+            "XL",
+            "XXL"
+        ]
+    },
+    {
+        "id": 28,
+        "name": "Women's Trench Coat",
+        "price": 4500,
+        "gender": "Women",
+        "subCategory": "Outerwear",
+        "category": "Women",
+        "image": "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+        "description": "Classic beige trench coat for a sophisticated look.",
+        "sizes": [
+            "S",
+            "M",
+            "L"
         ]
     }
 ]

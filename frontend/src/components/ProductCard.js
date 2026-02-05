@@ -23,16 +23,7 @@ const ProductCard = ({ product, onAddToCart }) => {
 
                 <div className="product-footer">
                     <span className="product-price">₹{product.price.toLocaleString()}</span>
-                    <button
-                        className="add-btn"
-                        onClick={(e) => {
-                            e.preventDefault(); // Prevent link click if nested (though it's not here)
-                            onAddToCart(product);
-                        }}
-                        aria-label="Add to cart"
-                    >
-                        +
-                    </button>
+
                 </div>
             </div>
         </div>

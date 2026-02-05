@@ -186,6 +186,17 @@ app.post('/api/auth/login', async (req, res) => {
 
 const { protect, admin } = require('./middleware/authMiddleware');
 
+// Get Logged in User orders
+app.get('/api/orders/myorders', protect, async (req, res) => {
+    try {
+        const orders = await Order.find({ 'customer.email': req.user.email });
+        res.json(orders);
+    } catch (err) {
+        console.error("Error fetching user orders:", err);
+        res.status(500).json({ message: "Server error fetching orders" });
+    }
+});
+
 // Get all orders (Protected, Admin only)
 app.get('/api/orders', protect, admin, async (req, res) => {
     try {

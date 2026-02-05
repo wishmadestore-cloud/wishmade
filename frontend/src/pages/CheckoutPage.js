@@ -57,6 +57,13 @@ const CheckoutPage = ({ cart, clearCart }) => {
         }
     };
 
+    const [isReviewing, setIsReviewing] = useState(false);
+
+    const handleInitialSubmit = (e) => {
+        e.preventDefault();
+        setIsReviewing(true);
+    };
+
     if (orderId) {
         return (
             <div className="container" style={{ textAlign: 'center', padding: '100px 20px' }}>
@@ -86,6 +93,60 @@ const CheckoutPage = ({ cart, clearCart }) => {
         );
     }
 
+    if (isReviewing) {
+        return (
+            <div className="review-container">
+                <h1 className="review-title">Review Your Order</h1>
+
+                <div className="review-card">
+                    <h3 className="review-section-title">Shipping to:</h3>
+                    <div className="review-details">
+                        <p><strong>{formData.name}</strong></p>
+                        <p>{formData.address}</p>
+                        <p>{formData.city}, {formData.zip}</p>
+                        <p>{formData.email}</p>
+                    </div>
+                    <button
+                        className="review-edit-btn"
+                        onClick={() => setIsReviewing(false)}
+                    >
+                        Edit Shipping Details
+                    </button>
+                </div>
+
+                <div className="review-card">
+                    <h3 className="review-section-title">Order Items:</h3>
+                    {cart.map((item, i) => (
+                        <div key={i} className="review-item">
+                            <span className="review-item-name">{item.name} {item.selectedSize && `(Size: ${item.selectedSize})`}</span>
+                            <span className="review-item-price">₹{item.price}</span>
+                        </div>
+                    ))}
+                    <div className="review-total">
+                        <span>Total Amount</span>
+                        <span>₹{total.toLocaleString()}</span>
+                    </div>
+                </div>
+
+                <div className="review-actions">
+                    <button
+                        className="btn-large btn-secondary"
+                        onClick={() => setIsReviewing(false)}
+                    >
+                        Back
+                    </button>
+                    <button
+                        className="btn-large btn-primary"
+                        onClick={handleSubmit}
+                        disabled={isSubmitting}
+                    >
+                        {isSubmitting ? 'Processing...' : 'Confirm & Place Order'}
+                    </button>
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div className="container" style={{ padding: '40px 20px' }}>
             <h1 style={{ marginBottom: '40px' }}>Checkout</h1>
@@ -94,13 +155,13 @@ const CheckoutPage = ({ cart, clearCart }) => {
                 {/* Form */}
                 <div>
                     <h2 style={{ marginBottom: '20px' }}>Shipping Details</h2>
-                    <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                    <form onSubmit={handleInitialSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                         <div>
                             <label style={{ display: 'block', marginBottom: '8px' }}>Full Name</label>
                             <input
                                 type="text"
                                 required
-                                style={{ width: '100%', padding: '12px', border: '1px solid #ddd', borderRadius: '4px' }}
+                                className="checkout-input"
                                 value={formData.name}
                                 onChange={e => setFormData({ ...formData, name: e.target.value })}
                             />
@@ -110,7 +171,7 @@ const CheckoutPage = ({ cart, clearCart }) => {
                             <input
                                 type="email"
                                 required
-                                style={{ width: '100%', padding: '12px', border: '1px solid #ddd', borderRadius: '4px' }}
+                                className="checkout-input"
                                 value={formData.email}
                                 onChange={e => setFormData({ ...formData, email: e.target.value })}
                             />
@@ -120,7 +181,7 @@ const CheckoutPage = ({ cart, clearCart }) => {
                             <textarea
                                 required
                                 rows="3"
-                                style={{ width: '100%', padding: '12px', border: '1px solid #ddd', borderRadius: '4px' }}
+                                className="checkout-textarea"
                                 value={formData.address}
                                 onChange={e => setFormData({ ...formData, address: e.target.value })}
                             ></textarea>
@@ -131,7 +192,7 @@ const CheckoutPage = ({ cart, clearCart }) => {
                                 <input
                                     type="text"
                                     required
-                                    style={{ width: '100%', padding: '12px', border: '1px solid #ddd', borderRadius: '4px' }}
+                                    className="checkout-input"
                                     value={formData.city}
                                     onChange={e => setFormData({ ...formData, city: e.target.value })}
                                 />
@@ -141,7 +202,7 @@ const CheckoutPage = ({ cart, clearCart }) => {
                                 <input
                                     type="text"
                                     required
-                                    style={{ width: '100%', padding: '12px', border: '1px solid #ddd', borderRadius: '4px' }}
+                                    className="checkout-input"
                                     value={formData.zip}
                                     onChange={e => setFormData({ ...formData, zip: e.target.value })}
                                 />
@@ -150,26 +211,25 @@ const CheckoutPage = ({ cart, clearCart }) => {
                         <button
                             type="submit"
                             className="btn btn-primary"
-                            disabled={isSubmitting}
-                            style={{ marginTop: '16px' }}
+                            style={{ marginTop: '16px', width: '100%', padding: '12px' }}
                         >
-                            {isSubmitting ? 'Processing...' : `Pay ₹${total.toLocaleString()}`}
+                            Review Order
                         </button>
                     </form>
                 </div>
 
                 {/* Order Summary */}
-                <div style={{ backgroundColor: '#f8f9fa', padding: '24px', borderRadius: '8px', height: 'fit-content' }}>
+                <div className="order-summary-card">
                     <h2 style={{ marginBottom: '20px' }}>Order Summary</h2>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '20px' }}>
                         {cart.map((item, i) => (
-                            <div key={i} style={{ display: 'flex', justifyContent: 'space-between' }}>
+                            <div key={i} style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid #444', paddingBottom: '8px' }}>
                                 <span>{item.name}</span>
                                 <span>₹{item.price}</span>
                             </div>
                         ))}
                     </div>
-                    <div style={{ borderTop: '1px solid #ddd', paddingTop: '16px', display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', fontSize: '1.2rem' }}>
+                    <div style={{ borderTop: '1px solid #555', paddingTop: '16px', display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', fontSize: '1.2rem' }}>
                         <span>Total</span>
                         <span>₹{total.toLocaleString()}</span>
                     </div>
