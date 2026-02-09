@@ -7,7 +7,6 @@ const Navbar = ({ cart, removeFromCart }) => {
     const navigate = useNavigate();
     const { user, logout } = useContext(AuthContext);
     const [dropdownOpen, setDropdownOpen] = useState(false);
-    const [cartOpen, setCartOpen] = useState(false);
     const dropdownRef = useRef(null);
 
     // Close dropdown when clicking outside

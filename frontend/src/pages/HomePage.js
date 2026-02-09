@@ -1,33 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import ProductCard from '../components/ProductCard';
-import { fetchProducts } from '../services/api';
+// Hero content for animation
+const heroSlides = [
+    {
+        image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+        title: 'Redefine Your Style',
+        subtitle: 'Discover the latest trends in fashion with our premium collection.'
+    },
+    {
+        image: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+        title: 'Exclusive Offers',
+        subtitle: 'Get up to 50% off on new arrivals this week.'
+    },
+    {
+        image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+        title: 'For Her, For Him',
+        subtitle: 'Curated collections for every occasion.'
+    }
+];
 
 const HomePage = ({ addToCart }) => {
-    const [products, setProducts] = useState([]);
-    const [filteredProducts, setFilteredProducts] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const [genderFilter, setGenderFilter] = useState('All');
-    const [categoryFilter, setCategoryFilter] = useState('All');
-
-    // Hero content for animation
-    const heroSlides = [
-        {
-            image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-            title: 'Redefine Your Style',
-            subtitle: 'Discover the latest trends in fashion with our premium collection.'
-        },
-        {
-            image: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-            title: 'Exclusive Offers',
-            subtitle: 'Get up to 50% off on new arrivals this week.'
-        },
-        {
-            image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-            title: 'For Her, For Him',
-            subtitle: 'Curated collections for every occasion.'
-        }
-    ];
 
     const [currentSlide, setCurrentSlide] = useState(0);
 
