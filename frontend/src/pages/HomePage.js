@@ -22,7 +22,12 @@ const heroSlides = [
 ];
 
 const HomePage = ({ addToCart }) => {
-
+    const [products, setProducts] = useState([]);
+    const [filteredProducts, setFilteredProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [genderFilter, setGenderFilter] = useState('All');
+    const [categoryFilter, setCategoryFilter] = useState('All');
     const [currentSlide, setCurrentSlide] = useState(0);
 
     useEffect(() => {
