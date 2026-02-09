@@ -1,3 +1,7 @@
+import React, { useEffect, useState } from 'react';
+import ProductCard from '../components/ProductCard';
+import { fetchProducts } from '../services/api';
+
 // Hero content for animation
 const heroSlides = [
     {
