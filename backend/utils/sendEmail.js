@@ -2,18 +2,34 @@ const nodemailer = require('nodemailer');
 
 const sendEmail = async (options) => {
     // 1. Create a transporter
-    // For development, we use Ethereal Email which fakes sending emails
-    const testAccount = await nodemailer.createTestAccount();
+    // For development, we can use Ethereal Email which fakes sending emails
+    // But we check for environment variables first for production readiness
 
-    const transporter = nodemailer.createTransport({
-        host: "smtp.ethereal.email",
-        port: 587,
-        secure: false, // true for 465, false for other ports
-        auth: {
-            user: testAccount.user, // generated ethereal user
-            pass: testAccount.pass, // generated ethereal password
-        },
-    });
+    let transporter;
+
+    if (process.env.SMTP_HOST) {
+        transporter = nodemailer.createTransport({
+            host: process.env.SMTP_HOST,
+            port: process.env.SMTP_PORT,
+            secure: process.env.SMTP_SECURE === 'true',
+            auth: {
+                user: process.env.SMTP_USER,
+                pass: process.env.SMTP_PASS,
+            },
+        });
+    } else {
+        // Fallback to Ethereal for development if no SMTP config is provided
+        const testAccount = await nodemailer.createTestAccount();
+        transporter = nodemailer.createTransport({
+            host: "smtp.ethereal.email",
+            port: 587,
+            secure: false,
+            auth: {
+                user: testAccount.user,
+                pass: testAccount.pass,
+            },
+        });
+    }
 
     // 2. Define email options
     const mailOptions = {

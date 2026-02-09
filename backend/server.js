@@ -4,6 +4,8 @@ const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const rateLimit = require('express-rate-limit');
+const { body, validationResult } = require('express-validator');
 
 const Product = require('./models/Product');
 const Order = require('./models/Order');
@@ -24,6 +26,64 @@ app.use(cors({
     credentials: true
 }));
 app.use(express.json());
+
+// --- Security Enhancements ---
+
+// Global Rate Limiter
+const globalLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // Limit each IP to 100 requests per window
+    standardHeaders: true,
+    legacyHeaders: false,
+    message: { message: "Too many requests from this IP, please try again after 15 minutes" }
+});
+app.use(globalLimiter);
+
+// Stricter Rate Limiter for Auth and Orders
+const authOrderLimiter = rateLimit({
+    windowMs: 60 * 60 * 1000, // 1 hour
+    max: 10, // Limit each IP to 10 requests per hour for sensitive actions
+    standardHeaders: true,
+    legacyHeaders: false,
+    message: { message: "Too many attempts from this IP, please try again later" }
+});
+
+// Validation Middleware Helper
+const validate = (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+    next();
+};
+
+// Validation Schemas
+const registerValidation = [
+    body('name').trim().notEmpty().withMessage('Name is required').isLength({ max: 100 }),
+    body('email').isEmail().withMessage('Invalid email').normalizeEmail(),
+    body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters'),
+    validate
+];
+
+const loginValidation = [
+    body('email').isEmail().withMessage('Invalid email').normalizeEmail(),
+    body('password').notEmpty().withMessage('Password is required'),
+    validate
+];
+
+const orderValidation = [
+    body('customer.name').trim().notEmpty().withMessage('Customer name is required'),
+    body('customer.email').isEmail().withMessage('Invalid customer email'),
+    body('customer.address').trim().notEmpty().withMessage('Address is required'),
+    body('customer.city').trim().notEmpty().withMessage('City is required'),
+    body('customer.zip').trim().notEmpty().withMessage('Zip code is required').isLength({ min: 5, max: 10 }),
+    body('items').isArray({ min: 1 }).withMessage('Items must be a non-empty array'),
+    body('items.*.id').notEmpty().withMessage('Product ID is required'),
+    body('items.*.name').notEmpty().withMessage('Product name is required'),
+    body('items.*.price').isNumeric().withMessage('Product price must be a number'),
+    body('total').isNumeric().withMessage('Total must be a number'),
+    validate
+];
 
 // Get all products
 app.get('/api/products', async (req, res) => {
@@ -54,7 +114,7 @@ app.get('/api/products/:id', async (req, res) => {
 
 
 // Place an order
-app.post('/api/orders', async (req, res) => {
+app.post('/api/orders', authOrderLimiter, orderValidation, async (req, res) => {
     try {
         const { items, total, customer } = req.body;
 
@@ -120,7 +180,7 @@ app.post('/api/orders', async (req, res) => {
 });
 
 // Register
-app.post('/api/auth/register', async (req, res) => {
+app.post('/api/auth/register', authOrderLimiter, registerValidation, async (req, res) => {
     try {
         const { name, email, password } = req.body;
 
@@ -154,7 +214,7 @@ app.post('/api/auth/register', async (req, res) => {
 });
 
 // Login
-app.post('/api/auth/login', async (req, res) => {
+app.post('/api/auth/login', authOrderLimiter, loginValidation, async (req, res) => {
     try {
         const { email, password } = req.body;
 

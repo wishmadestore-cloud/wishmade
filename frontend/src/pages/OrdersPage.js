@@ -17,7 +17,8 @@ const OrdersPage = () => {
 
         const fetchOrders = async () => {
             try {
-                const response = await fetch('http://localhost:5001/api/orders/myorders', {
+                const API_BASE_URL = process.env.REACT_APP_API_URL || "http://127.0.0.1:5001/api";
+                const response = await fetch(`${API_BASE_URL}/orders/myorders`, {
                     headers: {
                         'Authorization': `Bearer ${user.token}`
                     }
