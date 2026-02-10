@@ -94,6 +94,23 @@ button {
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 }
 
+.grid-cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+@media (max-width: 1024px) {
+  .grid-cols-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .grid-cols-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Navbar */
 .navbar {
   background-color: rgba(255, 255, 255, 0.9);
@@ -319,12 +336,12 @@ button {
 }
 
 .product-title {
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 1.1rem;
+  font-weight: 500;
   margin-bottom: 8px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  color: var(--primary);
+  /* Matching the clean typography in the image */
+  font-family: 'Outfit', sans-serif;
 }
 
 .product-footer {
