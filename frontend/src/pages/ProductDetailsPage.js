@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { fetchProductById } from '../services/api';
 
-const ProductDetailsPage = ({ addToCart }) => {
+const ProductDetailsPage = ({ addToCart, wishlist = [], toggleWishlist }) => {
     const { id } = useParams();
     const navigate = useNavigate();
     const [product, setProduct] = useState(null);
@@ -101,13 +101,34 @@ const ProductDetailsPage = ({ addToCart }) => {
                         </div>
                     )}
 
-                    <button
-                        className="btn btn-primary"
-                        onClick={handleAddToCart}
-                        style={{ width: '100%', padding: '16px', fontSize: '1.1rem' }}
-                    >
-                        Add to Cart
-                    </button>
+                    <div style={{ display: 'flex', gap: '20px' }}>
+                        <button
+                            className="btn btn-primary"
+                            onClick={handleAddToCart}
+                            style={{ flex: 1, padding: '16px', fontSize: '1.1rem' }}
+                        >
+                            Add to Cart
+                        </button>
+                        <button
+                            onClick={() => toggleWishlist(product)}
+                            style={{
+                                width: '60px',
+                                border: '1.5px solid #ddd',
+                                borderRadius: '8px',
+                                backgroundColor: 'white',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                cursor: 'pointer',
+                                transition: 'all 0.2s'
+                            }}
+                            title={wishlist.some(item => item.id === product.id) ? "Remove from wishlist" : "Add to wishlist"}
+                        >
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill={wishlist.some(item => item.id === product.id) ? "#ff4d4d" : "none"} stroke={wishlist.some(item => item.id === product.id) ? "#ff4d4d" : "currentColor"} strokeWidth="1.5">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

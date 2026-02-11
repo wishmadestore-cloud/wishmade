@@ -21,7 +21,7 @@ const heroSlides = [
     }
 ];
 
-const HomePage = ({ addToCart }) => {
+const HomePage = ({ addToCart, wishlist, toggleWishlist }) => {
     const [products, setProducts] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -194,6 +194,8 @@ const HomePage = ({ addToCart }) => {
                             <ProductCard
                                 key={product.id}
                                 product={product}
+                                wishlist={wishlist}
+                                toggleWishlist={toggleWishlist}
                                 onAddToCart={addToCart}
                             />
                         ))}

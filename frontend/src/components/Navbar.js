@@ -2,7 +2,7 @@ import React, { useContext, useState, useRef, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
-const Navbar = ({ cart, removeFromCart }) => {
+const Navbar = ({ cart, wishlist, removeFromCart }) => {
     const location = useLocation();
     const navigate = useNavigate();
     const { user, logout } = useContext(AuthContext);
@@ -107,15 +107,27 @@ const Navbar = ({ cart, removeFromCart }) => {
                     )}
                 </div>
 
-                <Link to="/cart" className="cart-container" style={{ position: 'relative', textDecoration: 'none' }}>
-                    <div
-                        className="cart-icon"
-                        style={{ cursor: 'pointer', fontSize: '1.5rem', position: 'relative' }}
-                    >
-                        🛒
-                        {cart.length > 0 && <span className="cart-badge">{cart.length}</span>}
-                    </div>
-                </Link>
+                <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
+                    <Link to="/wishlist" className="cart-container" style={{ position: 'relative', textDecoration: 'none' }}>
+                        <div
+                            className="cart-icon"
+                            style={{ cursor: 'pointer', fontSize: '1.4rem' }}
+                        >
+                            ❤️
+                            {wishlist.length > 0 && <span className="cart-badge" style={{ backgroundColor: '#ff4d4d' }}>{wishlist.length}</span>}
+                        </div>
+                    </Link>
+
+                    <Link to="/cart" className="cart-container" style={{ position: 'relative', textDecoration: 'none' }}>
+                        <div
+                            className="cart-icon"
+                            style={{ cursor: 'pointer', fontSize: '1.5rem' }}
+                        >
+                            🛒
+                            {cart.length > 0 && <span className="cart-badge">{cart.length}</span>}
+                        </div>
+                    </Link>
+                </div>
             </div>
         </nav>
     );

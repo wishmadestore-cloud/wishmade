@@ -358,6 +358,7 @@ button {
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
 }
 
@@ -378,15 +379,27 @@ button {
   position: absolute;
   top: 12px;
   right: 12px;
-  background: none;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
   border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   z-index: 5;
-  opacity: 0.6;
-  transition: opacity 0.3s;
+  transition: var(--transition);
 }
 
 .wishlist-btn:hover {
+  background: rgba(255, 255, 255, 0.4);
+  transform: scale(1.1);
+}
+
+.wishlist-btn.active {
+  background: white;
   opacity: 1;
 }
 
