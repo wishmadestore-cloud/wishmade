@@ -5,7 +5,7 @@ const ProductCard = ({ product, onAddToCart }) => {
     return (
         <div className="product-card">
             <div className="product-image-container">
-                <Link to={`/products/${product.id}`} style={{ display: 'block' }}>
+                <Link to={`/products/${product.id}`}>
                     <img
                         src={product.image}
                         alt={product.name}
