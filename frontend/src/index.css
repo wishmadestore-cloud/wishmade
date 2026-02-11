@@ -345,28 +345,33 @@ button {
 }
 
 .product-title {
-  font-size: 0.85rem;
-  font-weight: 400;
-  margin-top: 12px;
-  margin-bottom: 4px;
-  color: #000;
-  font-family: 'Outfit', sans-serif;
-  letter-spacing: 0.5px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin: 16px 0 8px;
+  color: #eee;
+  font-family: inherit;
+  letter-spacing: 1px;
   text-transform: uppercase;
+  line-height: 1.4;
+  height: 2.8em;
+  /* Force 2 lines height for alignment */
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .product-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 0;
+  margin-top: 4px;
 }
 
 .product-price {
-  font-weight: 400;
-  font-size: 0.9rem;
-  color: #000;
-  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--accent);
 }
 
 .wishlist-btn {
