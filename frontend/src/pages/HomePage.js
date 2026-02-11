@@ -189,7 +189,7 @@ const HomePage = ({ addToCart }) => {
                         </button>
                     </div>
                 ) : (
-                    <div className="grid grid-cols-3">
+                    <div className="grid grid-cols-4">
                         {filteredProducts.map(product => (
                             <ProductCard
                                 key={product.id}
