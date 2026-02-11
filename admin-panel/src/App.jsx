@@ -5,6 +5,9 @@ import LoginPage from './LoginPage';
 import Sidebar from './components/Sidebar';
 import DashboardStats from './components/DashboardStats';
 import OrderTable from './components/OrderTable';
+import ProductManagement from './components/ProductManagement';
+import CustomerManagement from './components/CustomerManagement';
+import SettingsPage from './components/SettingsPage';
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem('adminToken') || '');
@@ -102,12 +105,13 @@ function App() {
                 </>
               )}
 
-              {['products', 'customers', 'settings'].includes(activeTab) && (
-                <div className="placeholder-content">
-                  <h2>{activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}</h2>
-                  <p>This module is coming soon.</p>
-                </div>
-              )}
+              {activeTab === 'products' ? (
+                <ProductManagement token={token} />
+              ) : activeTab === 'customers' ? (
+                <CustomerManagement token={token} />
+              ) : activeTab === 'settings' ? (
+                <SettingsPage token={token} />
+              ) : null}
             </>
           )}
         </div>

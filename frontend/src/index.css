@@ -96,7 +96,7 @@ button {
 
 .grid-cols-3 {
   grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+  gap: 20px;
 }
 
 @media (max-width: 1024px) {
@@ -291,25 +291,24 @@ button {
 
 /* Product Card */
 .product-card {
-  background: var(--surface);
-  border-radius: var(--radius);
+  background: transparent;
+  border-radius: 0;
   overflow: hidden;
   transition: var(--transition);
-  border: 1px solid transparent;
+  border: none;
 }
 
 .product-card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--border);
+  transform: none;
+  box-shadow: none;
 }
 
 .product-image-container {
   width: 100%;
-  aspect-ratio: 1;
-  /* Square images */
+  aspect-ratio: 3/4;
   overflow: hidden;
-  background-color: #f0f0f0;
+  background-color: #f5f5f5;
+  position: relative;
 }
 
 .product-image {
@@ -328,32 +327,48 @@ button {
 }
 
 .product-category {
-  font-size: 12px;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  letter-spacing: 1px;
-  margin-bottom: 4px;
+  display: none;
 }
 
 .product-title {
-  font-size: 1.1rem;
-  font-weight: 500;
-  margin-bottom: 8px;
-  color: var(--primary);
-  /* Matching the clean typography in the image */
+  font-size: 0.85rem;
+  font-weight: 400;
+  margin-top: 12px;
+  margin-bottom: 4px;
+  color: #000;
   font-family: 'Outfit', sans-serif;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 
 .product-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 12px;
+  margin-top: 0;
 }
 
 .product-price {
-  font-weight: 700;
-  font-size: 18px;
+  font-weight: 400;
+  font-size: 0.9rem;
+  color: #000;
+  font-family: 'Outfit', sans-serif;
+}
+
+.wishlist-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 5;
+  opacity: 0.6;
+  transition: opacity 0.3s;
+}
+
+.wishlist-btn:hover {
+  opacity: 1;
 }
 
 .add-btn {

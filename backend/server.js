@@ -11,6 +11,8 @@ const Product = require('./models/Product');
 const Order = require('./models/Order');
 const User = require('./models/User');
 const sendEmail = require('./utils/sendEmail');
+const { upload } = require('./config/cloudinaryConfig');
+const { protect, admin } = require('./middleware/authMiddleware');
 
 dotenv.config();
 connectDB();
@@ -107,6 +109,93 @@ app.get('/api/products/:id', async (req, res) => {
     } catch (err) {
         console.error("Error reading product:", err);
         res.status(500).json({ message: "Server error fetching product" });
+    }
+});
+
+// Create product
+app.post('/api/products', protect, admin, async (req, res) => {
+    try {
+        const { name, price, gender, category, subCategory, image, description, sizes } = req.body;
+
+        // Generate a numeric ID (for compatibility)
+        const lastProduct = await Product.findOne().sort({ id: -1 });
+        const newId = lastProduct ? lastProduct.id + 1 : 1001;
+
+        const product = new Product({
+            id: newId,
+            name,
+            price,
+            gender,
+            category: category || gender, // Supporting old category field
+            subCategory,
+            image,
+            description,
+            sizes
+        });
+
+        const createdProduct = await product.save();
+        res.status(201).json(createdProduct);
+    } catch (err) {
+        console.error("Error creating product:", err);
+        res.status(500).json({ message: "Server error creating product" });
+    }
+});
+
+// Update product
+app.put('/api/products/:id', protect, admin, async (req, res) => {
+    try {
+        const { name, price, gender, category, subCategory, image, description, sizes } = req.body;
+        const product = await Product.findOne({ id: req.params.id });
+
+        if (product) {
+            product.name = name || product.name;
+            product.price = price || product.price;
+            product.gender = gender || product.gender;
+            product.category = category || gender || product.category;
+            product.subCategory = subCategory || product.subCategory;
+            product.image = image || product.image;
+            product.description = description || product.description;
+            product.sizes = sizes || product.sizes;
+
+            const updatedProduct = await product.save();
+            res.json(updatedProduct);
+        } else {
+            res.status(404).json({ message: "Product not found" });
+        }
+    } catch (err) {
+        console.error("Error updating product:", err);
+        res.status(500).json({ message: "Server error updating product" });
+    }
+});
+
+// Delete product
+app.delete('/api/products/:id', protect, admin, async (req, res) => {
+    try {
+        const result = await Product.deleteOne({ id: req.params.id });
+        if (result.deletedCount === 1) {
+            res.json({ message: "Product removed" });
+        } else {
+            res.status(404).json({ message: "Product not found" });
+        }
+    } catch (err) {
+        console.error("Error deleting product:", err);
+        res.status(500).json({ message: "Server error deleting product" });
+    }
+});
+
+// Upload image to Cloudinary
+app.post('/api/upload', protect, admin, upload.single('image'), (req, res) => {
+    try {
+        if (!req.file) {
+            return res.status(400).json({ message: "No image uploaded" });
+        }
+        res.status(200).json({
+            message: "Image uploaded successfully",
+            url: req.file.path // Cloudinary URL
+        });
+    } catch (err) {
+        console.error("Upload error:", err);
+        res.status(500).json({ message: "Server error during upload" });
     }
 });
 
@@ -243,7 +332,7 @@ app.post('/api/auth/login', authOrderLimiter, loginValidation, async (req, res) 
     }
 });
 
-const { protect, admin } = require('./middleware/authMiddleware');
+// Auth Middlewares (defined earlier)
 
 // Get Logged in User orders
 app.get('/api/orders/myorders', protect, async (req, res) => {
@@ -325,6 +414,38 @@ app.put('/api/users/profile', protect, async (req, res) => {
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Server error' });
+    }
+});
+
+// --- ADMIN USER MANAGEMENT ---
+
+// Get all users (Admin only)
+app.get('/api/users', protect, admin, async (req, res) => {
+    try {
+        const users = await User.find({}).select('-password');
+        res.json(users);
+    } catch (err) {
+        console.error("Error fetching users:", err);
+        res.status(500).json({ message: "Server error fetching users" });
+    }
+});
+
+// Delete user (Admin only)
+app.delete('/api/users/:id', protect, admin, async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+        if (user) {
+            if (user.isAdmin) {
+                return res.status(400).json({ message: "Cannot delete admin user" });
+            }
+            await User.deleteOne({ _id: req.params.id });
+            res.json({ message: "User removed" });
+        } else {
+            res.status(404).json({ message: "User not found" });
+        }
+    } catch (err) {
+        console.error("Error deleting user:", err);
+        res.status(500).json({ message: "Server error deleting user" });
     }
 });
 

@@ -169,11 +169,11 @@ const HomePage = ({ addToCart }) => {
                     </div>
                 </div>
 
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-                    <h2 style={{ fontSize: '1.8rem', color: '#333' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '30px', borderBottom: '1px solid #eee', paddingBottom: '15px' }}>
+                    <h2 style={{ fontSize: '1rem', color: '#000', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '1px' }}>
                         {genderFilter === 'All' ? 'Latest Arrivals' : `${genderFilter}'s Collection`}
                     </h2>
-                    <span style={{ color: '#666' }}>{filteredProducts.length} Items</span>
+                    <span style={{ color: '#999', fontSize: '0.8rem', textTransform: 'uppercase' }}>{filteredProducts.length} Items</span>
                 </div>
 
                 {/* Products Grid */}
