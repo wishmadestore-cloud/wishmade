@@ -8,6 +8,7 @@ import OrdersPage from "./pages/OrdersPage";
 import OffersPage from "./pages/OffersPage";
 import CartPage from "./pages/CartPage";
 import LoginPage from "./pages/LoginPage";
+import WishlistPage from "./pages/WishlistPage";
 
 
 
